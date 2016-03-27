@@ -29,7 +29,6 @@ void getInorder(struct node *root, int *arr, int *index)
 		return;
 	getInorder(root->left, arr, index);
 	arr[*index] = root->data;
-	printf("%d\t %d\t %d\n", root->data, arr[*index], *index);
 	*index += 1;
 	getInorder(root->right, arr, index);
 }
@@ -38,7 +37,6 @@ void getPreorder(struct node *root, int *arr, int *index)
 	if (root == NULL)
 		return;
 	arr[*index] = root->data;
-	printf("%d\t %d\t %d\n", root->data, arr[*index], *index);
 	*index += 1;
 	getPreorder(root->left, arr, index);
 	getPreorder(root->right, arr, index);
@@ -50,9 +48,7 @@ void getPostorder(struct node *root, int *arr, int *index)
 	getPostorder(root->left, arr, index);
 	getPostorder(root->right, arr, index);
 	arr[*index] = root->data;
-	printf("%d\t %d\t %d\n", root->data, arr[*index], *index);
 	*index += 1;
-
 }
 void inorder(struct node *root, int *arr){
 	if (root == NULL || arr == NULL)
