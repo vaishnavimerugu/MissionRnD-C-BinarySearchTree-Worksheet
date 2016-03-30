@@ -38,9 +38,8 @@ struct node * add_node(struct node *root, int data){
 int main()
 {
 	struct node *root = NULL;
-	int arr[3] = {10,5,15};
-	for (int i = 0; i < 3; i++)
-		root = add_node(root,arr[i]);
-	printf(" height is %d\n left-sum is %d\n right-sum is %d\n", get_height(root),get_left_subtree_sum(root),get_right_subtree_sum(root));
+	int arr[5] = {1,2,3,4,5};
+	root = convert_array_to_bst(&arr[0], 5);
 	getchar();
+	return 0;
 }

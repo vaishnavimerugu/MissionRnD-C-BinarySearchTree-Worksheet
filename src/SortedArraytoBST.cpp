@@ -27,15 +27,34 @@ Note : Return Null for invalid Inputs
 Note : Donot create a new BST .
 */
 #include <stdlib.h>
+#include<stdio.h>
 struct node{
 	struct node * left;
 	int data;
 	struct node *right;
 };
-
-
-struct node * convert_array_to_bst(int *arr, int len){
-	
-	return NULL;
+struct node *newnode(int key)
+{
+	struct node *temp = (struct node *)malloc(sizeof(struct node));
+	temp->data = key;
+	temp->left = NULL;
+	temp->right = NULL;
+	return temp;
 }
+struct node *array_to_bstree(int *arr, int low, int high)
+{
+	if (low>high)
+		return NULL;
+	int mid = (low + high) / 2;
+	struct node *root = newnode(arr[mid]);
+	root->left = array_to_bstree(arr, low, mid - 1);
+	root->right = array_to_bstree(arr, mid + 1, high);
+	return root;
+}
+struct node * convert_array_to_bst(int *arr, int len){
+	if (arr == NULL)
+		return NULL;
+	return array_to_bstree(arr, 0, len - 1);
+}
+
 
