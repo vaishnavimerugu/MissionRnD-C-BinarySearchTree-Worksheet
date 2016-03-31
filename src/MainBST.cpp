@@ -37,9 +37,12 @@ struct node * add_node(struct node *root, int data){
 }
 int main()
 {
-	struct node *root = NULL;
-	int arr[5] = {1,2,3,4,5};
-	root = convert_array_to_bst(&arr[0], 5);
+	struct node *root = newNode(1);
+	root->left = newNode(2);
+	root->right = newNode(3);
+	root->left->left = newNode(4);
+	root->left->right = newNode(5);
+	int *res = BSTRighttoLeftRows(root);
 	getchar();
 	return 0;
 }

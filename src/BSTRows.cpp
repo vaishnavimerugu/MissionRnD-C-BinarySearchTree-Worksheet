@@ -28,10 +28,42 @@ struct node{
 	int data;
 	struct node *right;
 };
-
-
-
-int* BSTRighttoLeftRows(struct node* root)
+int power(int base,int exp)
 {
-    return NULL;
+	int res = 1;
+	for (int i = 0; i < exp; i++)
+	{
+		res *= base;
+	}
+	return res;
+}
+int get_height1(struct node *root){
+	if (root == NULL)
+		return 0;
+	int height1 = get_height1(root->right);
+	int height2 = get_height1(root->left);
+	return height1 > height2 ? height1 + 1 : height2 + 1;
+}
+void bstRows(struct node *root, int *arr, int ht,int *index)
+{
+	if (root == NULL)
+		return;
+	if (ht == 1)
+	{
+		arr[*index] = root->data;
+		*index += 1;
+	}
+	bstRows(root->right, arr, ht - 1, index);
+	bstRows(root->left, arr, ht - 1, index);
+}
+
+int * BSTRighttoLeftRows(struct node* root)
+{
+	if (root == NULL)
+		return NULL;
+	int ht = get_height1(root),index=0;
+	int *arr = (int *)malloc(power(2, ht + 1)*sizeof(int));
+	for (int i = 0; i <= ht; i++)
+		bstRows(root, arr, i,&index);
+	return arr;
 }
